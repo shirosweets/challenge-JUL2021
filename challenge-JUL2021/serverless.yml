@@ -16,7 +16,7 @@ provider:
 
 plugins:
   # - serverless-s3-local
-  # - serverless-webpack
+  #- serverless-webpack
   - serverless-offline-s3
   - serverless-offline
 

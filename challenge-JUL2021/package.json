@@ -13,6 +13,8 @@
     "url": "https://github.com/shirosweets/challenge-JUL2021.git"
   },
   "devDependencies": {
+    "serverless-webpack": "^5.5.1",
+    "serverless-offline": "^6.9.0",
     "serverless-offline-s3": "^4.2.0"
   },
   "dependencies": {

@@ -1,7 +1,7 @@
 'use strict';
 
 const formidable = require('formidable');
-const AWS = require('aws-sdk');
+const AWS = require('aws-sdk');  // eslint-disable-line import/no-extraneous-dependencies
 
 // accessKey = AWS.accessKeyId()
 const s3 = new AWS.S3();
@@ -29,16 +29,26 @@ s3.createBucket({Bucket: bucketName}, function(err, data) {
 });
 
 
-module.exports.update_csv = (event, context) => {
-  // ALGO CON EL S3
-
-
-  return {
-    statusCode: 200,
-    body: JSON.stringify({
-      message: "Working UwU",
-    }),
-  };
+module.exports.update_csv = (event, context, callback) => {
+  fetch(event.csv_url)
+    .then((response) => {
+      if(response.ok) {
+        return response;
+      }
+      return Promise.reject(new Error(
+        `Failed to fetch ${response.url}: ${response.status} ${response.statusText}`
+      ));
+      })
+      .then(response => response.buffer())
+      .then(buffer => (
+        s3.putObject({
+          Bucket: process.env.BUCKET,
+          Key: event.key,
+          Body: buffer,
+        }).promise()
+      )
+    )
+    .then(v => callback(null, v), callback);
 };
 
 
