@@ -1,0 +1,96 @@
+service: challenge-aws-s3-service
+frameworkVersion: '>=2.52.1'
+
+configValidationMode: warm # error
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  stage: dev
+  region: us-east-1 # north-virginia
+  s3:  ## OFFILINE-S3
+    bucketOne:
+      name: perfect-bucket
+      versioningConfiguration:
+        Status: Enabled
+
+plugins:
+  # - serverless-s3-local
+  # - serverless-webpack
+  - serverless-offline-s3
+  - serverless-offline
+
+custom:
+#   serverless-offline:
+#     httpsProtocol: "dev-certs"
+#     httpPort: 4000
+#     stageVariables:
+#       foo: "bar"
+  serverless-offline-s3:
+    endpoint: http://localhost:4569 # http://0.0.0.0:9000
+      # region: us-east-1
+    accessKey: dorimeadmin
+    secretKey: dorimeadmin
+
+# custom:
+#   s3:  # LOCAL-S3
+#     host: localhost
+#     port: 4569 # 3002
+#     directory: /tmp
+
+resources:
+  Resources:
+    NewResource:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: perfect-bucket
+        #AccessControl:
+        #CorsConfiguration:
+
+functions:
+  # connect:
+  #   handler: handler.connect
+  #   events:
+  #     - websocket:
+  #         route: $connect # authorizers are only for connect routes
+  #         authorizer:
+  #           name: auth
+  #           identitySource:
+  #             - 'route.request.header.Auth'
+  hello:
+    handler: handler.hello
+    events:
+      - http:
+          path: hello
+          method: get
+          cors: true
+  # s3hook:  # LOCAL-S3
+  #   handler: handler.s3hook
+  #   events:
+  #     - s3: perfect-bucket
+  #       event: s3:*
+  update_csv:
+    handler: handler.update_csv
+    events:
+      - http:
+          path: update_csv
+          method: get
+          cors: true
+  users:  # OFFILNE-S3
+    #handler: users.handler
+    handler: handler.webhook
+    events:
+      - s3:
+        bucket: perfect-bucket
+        event: s3.ObjectCreated:*
+        rules:
+          - prefix: update_csv/
+          - suffix: .csv
+      # - s3:
+      #   bucket: perfect-bucket
+      #   event: s3.ObjectRemoved:*
+      #   rules:
+      #     - prefix: delete_csv/
+      #     - suffix: .csv
+  auth:
+    handler: handler.auth
