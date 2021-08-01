@@ -179,7 +179,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/challenge-aws-s3-service/dev/1627679141100-2021-07-30T21:05:41.100Z/challenge-aws-s3-service.zip"
+          "S3Key": "serverless/challenge-aws-s3-service/dev/1627680779195-2021-07-30T21:32:59.195Z/challenge-aws-s3-service.zip"
         },
         "Handler": "handler.hello",
         "Runtime": "nodejs14.x",
@@ -204,7 +204,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/challenge-aws-s3-service/dev/1627679141100-2021-07-30T21:05:41.100Z/challenge-aws-s3-service.zip"
+          "S3Key": "serverless/challenge-aws-s3-service/dev/1627680779195-2021-07-30T21:32:59.195Z/challenge-aws-s3-service.zip"
         },
         "Handler": "handler.update_csv",
         "Runtime": "nodejs14.x",
@@ -229,7 +229,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/challenge-aws-s3-service/dev/1627679141100-2021-07-30T21:05:41.100Z/challenge-aws-s3-service.zip"
+          "S3Key": "serverless/challenge-aws-s3-service/dev/1627680779195-2021-07-30T21:32:59.195Z/challenge-aws-s3-service.zip"
         },
         "Handler": "handler.webhook",
         "Runtime": "nodejs14.x",
@@ -254,7 +254,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/challenge-aws-s3-service/dev/1627679141100-2021-07-30T21:05:41.100Z/challenge-aws-s3-service.zip"
+          "S3Key": "serverless/challenge-aws-s3-service/dev/1627680779195-2021-07-30T21:32:59.195Z/challenge-aws-s3-service.zip"
         },
         "Handler": "handler.auth",
         "Runtime": "nodejs14.x",
@@ -272,44 +272,44 @@
         "AuthLogGroup"
       ]
     },
-    "UpdateUnderscorecsvLambdaVersion28MAw4rJq84BXcary68pULnJFHqHuu3ngHSSGP8": {
+    "UpdateUnderscorecsvLambdaVersionHo0GlCJtf61sC4n03TyNemEkAW8SXcZnhW3r8YlKs": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "UpdateUnderscorecsvLambdaFunction"
         },
-        "CodeSha256": "sp7twYuxcjH8n7ftzouACzc/JE49KVMxI2JlP+US340="
+        "CodeSha256": "xGLG6nWV3b7eTG3zEzqrPJHfy3sTHTqs6y6R8zvZs9M="
       }
     },
-    "UsersLambdaVersionOSzmPXpKSSoBSlQLKKjPjzFn6arogpIYcohZHlWm1EM": {
+    "UsersLambdaVersionfzCjlAyDPVw9D7Vahk5moncDdbqCJF3GimAnHQMbec": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "UsersLambdaFunction"
         },
-        "CodeSha256": "sp7twYuxcjH8n7ftzouACzc/JE49KVMxI2JlP+US340="
+        "CodeSha256": "xGLG6nWV3b7eTG3zEzqrPJHfy3sTHTqs6y6R8zvZs9M="
       }
     },
-    "AuthLambdaVersionIw5OS5TtDNm1vi0gxtpBwLzhHuV8qOjrDbWTYW7J0": {
+    "AuthLambdaVersion16foLyeIaPklyCXxkPdbhTluFJS5hW79HVVYzs2rfkk": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "AuthLambdaFunction"
         },
-        "CodeSha256": "sp7twYuxcjH8n7ftzouACzc/JE49KVMxI2JlP+US340="
+        "CodeSha256": "xGLG6nWV3b7eTG3zEzqrPJHfy3sTHTqs6y6R8zvZs9M="
       }
     },
-    "HelloLambdaVersionGG528JL9fwnXM5P1g5CYoqAH31Ym3fqmcJa9BhwNSM": {
+    "HelloLambdaVersionuIwI8ap9YpTx8Btd6D4LUUtB4rKMo7bPvbFGuXRUlw": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "HelloLambdaFunction"
         },
-        "CodeSha256": "sp7twYuxcjH8n7ftzouACzc/JE49KVMxI2JlP+US340="
+        "CodeSha256": "xGLG6nWV3b7eTG3zEzqrPJHfy3sTHTqs6y6R8zvZs9M="
       }
     },
     "ApiGatewayRestApi": {
@@ -536,7 +536,7 @@
         "UpdateUnderscorecsvLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1627679125813": {
+    "ApiGatewayDeployment1627680768280": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -550,6 +550,50 @@
         "ApiGatewayMethodHelloGet",
         "ApiGatewayMethodUpdatecsvGet"
       ]
+    },
+    "ApiGatewayApiKey1": {
+      "Type": "AWS::ApiGateway::ApiKey",
+      "Properties": {
+        "Enabled": true,
+        "Name": "dorimeadmin",
+        "StageKeys": [
+          {
+            "RestApiId": {
+              "Ref": "ApiGatewayRestApi"
+            },
+            "StageName": "dev"
+          }
+        ]
+      },
+      "DependsOn": "ApiGatewayDeployment1627680768280"
+    },
+    "ApiGatewayUsagePlan": {
+      "Type": "AWS::ApiGateway::UsagePlan",
+      "DependsOn": "ApiGatewayDeployment1627680768280",
+      "Properties": {
+        "ApiStages": [
+          {
+            "ApiId": {
+              "Ref": "ApiGatewayRestApi"
+            },
+            "Stage": "dev"
+          }
+        ],
+        "Description": "Usage plan for challenge-aws-s3-service dev stage",
+        "UsagePlanName": "challenge-aws-s3-service-dev"
+      }
+    },
+    "ApiGatewayUsagePlanKey1": {
+      "Type": "AWS::ApiGateway::UsagePlanKey",
+      "Properties": {
+        "KeyId": {
+          "Ref": "ApiGatewayApiKey1"
+        },
+        "KeyType": "API_KEY",
+        "UsagePlanId": {
+          "Ref": "ApiGatewayUsagePlan"
+        }
+      }
     },
     "HelloLambdaPermissionApiGateway": {
       "Type": "AWS::Lambda::Permission",
@@ -644,7 +688,7 @@
     "UpdateUnderscorecsvLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "UpdateUnderscorecsvLambdaVersion28MAw4rJq84BXcary68pULnJFHqHuu3ngHSSGP8"
+        "Ref": "UpdateUnderscorecsvLambdaVersionHo0GlCJtf61sC4n03TyNemEkAW8SXcZnhW3r8YlKs"
       },
       "Export": {
         "Name": "sls-challenge-aws-s3-service-dev-UpdateUnderscorecsvLambdaFunctionQualifiedArn"
@@ -653,7 +697,7 @@
     "UsersLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "UsersLambdaVersionOSzmPXpKSSoBSlQLKKjPjzFn6arogpIYcohZHlWm1EM"
+        "Ref": "UsersLambdaVersionfzCjlAyDPVw9D7Vahk5moncDdbqCJF3GimAnHQMbec"
       },
       "Export": {
         "Name": "sls-challenge-aws-s3-service-dev-UsersLambdaFunctionQualifiedArn"
@@ -662,7 +706,7 @@
     "AuthLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "AuthLambdaVersionIw5OS5TtDNm1vi0gxtpBwLzhHuV8qOjrDbWTYW7J0"
+        "Ref": "AuthLambdaVersion16foLyeIaPklyCXxkPdbhTluFJS5hW79HVVYzs2rfkk"
       },
       "Export": {
         "Name": "sls-challenge-aws-s3-service-dev-AuthLambdaFunctionQualifiedArn"
@@ -671,7 +715,7 @@
     "HelloLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "HelloLambdaVersionGG528JL9fwnXM5P1g5CYoqAH31Ym3fqmcJa9BhwNSM"
+        "Ref": "HelloLambdaVersionuIwI8ap9YpTx8Btd6D4LUUtB4rKMo7bPvbFGuXRUlw"
       },
       "Export": {
         "Name": "sls-challenge-aws-s3-service-dev-HelloLambdaFunctionQualifiedArn"

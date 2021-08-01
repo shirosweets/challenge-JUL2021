@@ -29,6 +29,15 @@ s3.createBucket({Bucket: bucketName}, function(err, data) {
 });
 
 
+// module.exports.upload_csv = (event) => {
+//   event.Records.forEach((record) => {
+//     const filename = record.s3.object.key;
+//     const time = 0 // time now
+//     console.log(`New file .csv has been added to S3 bucket`);
+//   });
+// };
+
+
 module.exports.update_csv = (event, context, callback) => {
   fetch(event.csv_url)
     .then((response) => {
@@ -53,6 +62,19 @@ module.exports.update_csv = (event, context, callback) => {
 
 
 module.exports.hello = async(event, context) => {
+
+  var fs = require("fs");
+  fs.readFile('csv_files/userdata.csv', (err, data) => {
+    if (err) throw err;
+    console.log(data);
+
+    s3.putObject({
+      Bucket: "perfect-bucket",
+      Key: "some.csv",
+      Body: data,
+    }).promise()
+  });
+
   return {
     statusCode: 200,
     body: JSON.stringify({
@@ -71,26 +93,6 @@ module.exports.message = ({ time, ...rest }) => new Promise((resolve, reject) =>
   }, time * 1000
   )
 );
-
-
-// const request_files = (
-//   // my_bucket = s3.Bucket(s3_bucket_name)
-//   // files_in_s3_bucket = []
-//   // time_update
-//   // name_file
-// );
-
-
-// const delete_csv = (
-
-// );
-
-
-// module.exports = {
-//   hello,
-//   message,
-//   update_csv
-// };
 
 
 module.exports.webhook = (event, context, callback) => {
@@ -134,12 +136,3 @@ module.exports.s3hook = (event, context) => {
 module.exports.auth = async(event, context) => {
 
 };
-
-
-// module.exports.upload_csv = (event) => {
-//   event.Records.forEach((record) => {
-//     const filename = record.s3.object.key;
-//     const time = 0 // time now
-//     console.log(`New file .csv has been added to S3 bucket`);
-//   });
-// };

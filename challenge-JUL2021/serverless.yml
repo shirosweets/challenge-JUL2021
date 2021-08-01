@@ -8,29 +8,32 @@ provider:
   runtime: nodejs14.x
   stage: dev
   region: us-east-1 # north-virginia
-  s3:  ## OFFILINE-S3
-    bucketOne:
-      name: perfect-bucket
-      versioningConfiguration:
-        Status: Enabled
+  apiGateway:
+    apiKeys:
+    - dorimeadmin
+  # s3:  ## OFFILINE-S3
+  #   bucketOne:
+  #     name: perfect-bucket
+  #     versioningConfiguration:
+  #       Status: Enabled
 
 plugins:
   # - serverless-s3-local
   #- serverless-webpack
-  - serverless-offline-s3
+  #- serverless-offline-s3
   - serverless-offline
 
-custom:
+# custom:
 #   serverless-offline:
 #     httpsProtocol: "dev-certs"
 #     httpPort: 4000
 #     stageVariables:
 #       foo: "bar"
-  serverless-offline-s3:
-    endpoint: http://localhost:4569 # http://0.0.0.0:9000
-      # region: us-east-1
-    accessKey: dorimeadmin
-    secretKey: dorimeadmin
+  # serverless-offline-s3:
+  #   endpoint: http://localhost:4569 # http://0.0.0.0:9000
+  #     # region: us-east-1
+  #   accessKey: dorimeadmin
+  #   secretKey: dorimeadmin
 
 # custom:
 #   s3:  # LOCAL-S3
@@ -78,13 +81,13 @@ functions:
           cors: true
   users:  # OFFILNE-S3
     #handler: users.handler
-    handler: handler.webhook
+    handler: handler.s3hook
     events:
       - s3:
         bucket: perfect-bucket
         event: s3.ObjectCreated:*
         rules:
-          - prefix: update_csv/
+          #- prefix: update_csv/
           - suffix: .csv
       # - s3:
       #   bucket: perfect-bucket

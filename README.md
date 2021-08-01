@@ -74,4 +74,23 @@ npm install serverless-offline-s3 --save-dev
 
 "serverless-offline-s3": "^4.2.0",
 
+# New install
+
+npm install --save-dev serverless-offline
+
+
+---
+
+sudo npm i -g serverless-offiline
+
+npm install -g npm@7.20.3
+
+sls offline start
+
+> Serverless plugin "serverless-webpack" not found. Make sure it's installed and listed in the "plugins" section of your serverless config file.
+
+sudo npm i -g serverless-webpack
+
+npm install --save-dev serverless-webpack
+
 # 3hs
